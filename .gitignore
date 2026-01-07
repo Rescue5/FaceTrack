@@ -1,0 +1,11 @@
+*.pyc
+/**/__pycache__
+*.task
+*.png
+*.jpg
+*.jpeg
+*.mp4
+*.avi
+*.mov
+!image/ReadMe/*
+*csv
