@@ -12,7 +12,7 @@ from omegaconf import DictConfig, OmegaConf
 
 class FaceMeshHandler:
     default_conf = OmegaConf.create({
-        "model_path": "face_landmarker.task",
+        "model_path": "modules/tasks/face_landmarker.task",
         "running_mode": "IMAGE",
         "num_faces":1,
         "output_face_blendshapes":False,
@@ -27,6 +27,9 @@ class FaceMeshHandler:
         )
 
         if not os.path.exists(self.conf.model_path):
+            model_dir = os.path.dirname(self.conf.model_path)
+            if model_dir:
+                os.makedirs(model_dir, exist_ok=True)
             urllib.request.urlretrieve(MODEL_URL, self.conf.model_path)
 
         self.base_options = python.BaseOptions(model_asset_path=self.conf.model_path)
