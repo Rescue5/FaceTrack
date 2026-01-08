@@ -1,10 +1,9 @@
 from omegaconf import DictConfig, OmegaConf
 from modules.FaceMesh import FaceMeshHandler
 import threading
-from multiprocessing import Queue
+import queue
 from dataclasses import dataclass
 import numpy as np
-from modules.node.reader import FramePayload
 
 @dataclass
 class TrackerPayload:
@@ -16,7 +15,7 @@ class Tracker:
         "sus":True,
     })
 
-    def __init__(self, conf: DictConfig, face_mesh_handler: FaceMeshHandler, frame_queue: Queue[FramePayload], tracker_queue: Queue[TrackerPayload]):
+    def __init__(self, conf: DictConfig, face_mesh_handler: FaceMeshHandler, frame_queue: queue.Queue, tracker_queue: queue.Queue):
         self.conf = OmegaConf.merge(self.default_conf, conf)
         self.face_mesh_handler = face_mesh_handler
         self.stop_event = threading.Event()
