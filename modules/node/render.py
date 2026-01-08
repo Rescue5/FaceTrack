@@ -8,7 +8,7 @@ class Render:
     default_conf = OmegaConf.create({
         "sus":True,
     })
-    def __init__(self, conf: DictConfig, tracker_queue: Queue[TrackerPayload]):
+    def __init__(self, conf: DictConfig, tracker_queue: Queue):
         self.conf = OmegaConf.merge(self.default_conf, conf)
         self.tracker_queue = tracker_queue
         self.stop_event = threading.Event()
