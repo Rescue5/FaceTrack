@@ -26,8 +26,9 @@ class Tracker:
         while not self.stop_event.is_set():
             frame_payload = self.frame_queue.get()
             result = self.face_mesh_handler.process_frame_3d(frame_payload.frame)
-            tracker_payload = TrackerPayload(landmarks=result.landmarks[0], blanshape=result.blanshape[0])
-            self.tracker_queue.put(tracker_payload)
+            if result.face_landmarks and result.face_blendshapes:
+                tracker_payload = TrackerPayload(landmarks=result.face_landmarks[0], blanshape=result.face_blendshapes[0])
+                self.tracker_queue.put(tracker_payload)
     
     def stop(self):
         self.stop_event.set()
