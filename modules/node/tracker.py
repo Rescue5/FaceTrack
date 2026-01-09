@@ -10,7 +10,9 @@ class TrackerPayload:
     frame: np.ndarray | None
     landmarks: np.ndarray
     blanshape: np.ndarray
-    
+    state: str
+    state_num: int
+
 class Tracker:
     default_conf = OmegaConf.create({
         "store_frame":False,
@@ -28,15 +30,22 @@ class Tracker:
         state_num = 0
         while not self.stop_event.is_set():
             frame_payload = self.frame_queue.get()
-            tracker_payload = TrackerPayload(None, np.array([]), np.array([]))
+            tracker_payload = TrackerPayload(None, np.array([]), np.array([]), "", 0)
 
             result = self.face_mesh_handler.process_frame_3d(frame_payload.frame)
+            
             prev_state, state_num = self.__return_state(result, prev_state, state_num)
 
-            tracker_payload = TrackerPayload(
-                frame=frame_payload.frame if self.conf.store_frame else None, 
-                landmarks=result.face_landmarks[0], 
-                blanshape=result.face_blendshapes[0])
+            if prev_state == "LOST":
+                pass
+            else:
+                tracker_payload.landmarks, tracker_payload.blanshape =  result.face_landmarks[0], result.face_blendshapes[0]
+
+            if self.conf.store_frame:
+                tracker_payload.frame = frame_payload.frame
+
+            tracker_payload.state = prev_state
+            tracker_payload.state_num = state_num
 
             self.tracker_queue.put(tracker_payload)
     
