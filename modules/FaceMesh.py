@@ -15,7 +15,7 @@ class FaceMeshHandler:
         "model_path": "modules/tasks/face_landmarker.task",
         "running_mode": "IMAGE",
         "num_faces":1,
-        "output_face_blendshapes":False,
+        "output_face_blendshapes":True,
         "output_facial_transformation_matrixes":False,
     })
 
