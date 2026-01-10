@@ -1,9 +1,10 @@
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig, ListConfig, OmegaConf
 from modules.FaceMesh import FaceMeshHandler
 import threading
 import queue
 from dataclasses import dataclass
 import numpy as np
+import multiprocessing
 
 @dataclass
 class TrackerPayload:
@@ -18,7 +19,7 @@ class Tracker:
         "store_frame":False,
     })
 
-    def __init__(self, conf: DictConfig, face_mesh_handler: FaceMeshHandler, frame_queue: queue.Queue, tracker_queue: queue.Queue):
+    def __init__(self, conf: DictConfig | ListConfig, face_mesh_handler: FaceMeshHandler, frame_queue: queue.Queue, tracker_queue: multiprocessing.Queue):
         self.conf = OmegaConf.merge(self.default_conf, conf)
         self.face_mesh_handler = face_mesh_handler
         self.stop_event = threading.Event()

@@ -8,7 +8,7 @@ from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 import numpy as np
 
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig, ListConfig, OmegaConf
 
 class FaceMeshHandler:
     default_conf = OmegaConf.create({
@@ -19,7 +19,7 @@ class FaceMeshHandler:
         "output_facial_transformation_matrixes":False,
     })
 
-    def __init__(self, conf: DictConfig):
+    def __init__(self, conf: DictConfig | ListConfig):
         self.conf = OmegaConf.merge(self.default_conf, conf)
         MODEL_URL = (
             "https://storage.googleapis.com/mediapipe-models/face_landmarker/face_landmarker/"

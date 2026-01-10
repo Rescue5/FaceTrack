@@ -1,5 +1,5 @@
 import time
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig, ListConfig, OmegaConf
 from dataclasses import dataclass
 import numpy as np
 import cv2
@@ -18,7 +18,7 @@ class VideoReader:
         "target_size":"orig"
     })
 
-    def __init__(self, conf: DictConfig, frame_queue: queue.Queue):
+    def __init__(self, conf: DictConfig | ListConfig, frame_queue: queue.Queue):
         self.conf = OmegaConf.merge(self.default_conf, conf)
 
         self.stop_event = threading.Event()
