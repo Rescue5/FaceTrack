@@ -7,5 +7,6 @@
 *.mp4
 *.avi
 *.mov
-!image/ReadMe/*
 *csv
+
+!image/ReadMe/*
