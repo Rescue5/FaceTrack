@@ -1,0 +1,16 @@
+{
+    "video_reader": {
+        "video_src": "cv",
+        "target_format": "rgb",
+        "target_size": "orig"
+    },
+    "tracker": {
+        "store_frame": true
+    },
+    "render": {
+        "sus": true
+    },
+    "face_mesh": {
+        "running_mode": "VIDEO"
+    }
+}
