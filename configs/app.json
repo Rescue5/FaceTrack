@@ -12,5 +12,13 @@
     },
     "face_mesh": {
         "running_mode": "VIDEO"
+    },
+    "one_euro_filter": {
+        "landmarks": {},
+        "blendshapes": {},
+        "defaults": {
+            "min_cutoff": 1.0,
+            "beta": 0.0
+        }
     }
 }
