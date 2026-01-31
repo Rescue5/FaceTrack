@@ -5,7 +5,8 @@
         "target_size": "orig"
     },
     "tracker": {
-        "store_frame": true
+        "store_frame": true,
+        "use_one_euro": true
     },
     "render": {
         "sus": true
@@ -17,8 +18,9 @@
         "landmarks": {},
         "blendshapes": {},
         "defaults": {
-            "min_cutoff": 1.0,
-            "beta": 0.0
+            "min_cutoff": 0.4,
+            "beta": 0.8,
+            "d_cutoff": 1.0
         }
     }
 }
