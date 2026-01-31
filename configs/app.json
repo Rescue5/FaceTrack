@@ -1,8 +1,13 @@
 {
     "video_reader": {
-        "video_src": "cv",
+        "video_src": "file",
+        "video_path": "video/test-00.02.27.725-00.03.06.460.mp4",
         "target_format": "rgb",
-        "target_size": "orig"
+        "target_size": [
+            1280,
+            720
+        ],
+        "brightness": 2
     },
     "tracker": {
         "store_frame": true,
@@ -18,9 +23,9 @@
         "landmarks": {},
         "blendshapes": {},
         "defaults": {
-            "min_cutoff": 0.4,
-            "beta": 0.8,
-            "d_cutoff": 1.0
+            "min_cutoff": 0.5,
+            "beta": 10.0,
+            "d_cutoff": 2.0
         }
     }
 }
