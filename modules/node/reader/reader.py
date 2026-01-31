@@ -5,11 +5,7 @@ import numpy as np
 import cv2
 import threading
 import queue
-
-@dataclass
-class FramePayload:
-    frame: np.ndarray
-    timestamp: float
+from .frame_payload import FramePayload
 
 class VideoReader:
     default_conf = OmegaConf.create({

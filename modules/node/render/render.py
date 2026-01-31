@@ -1,7 +1,6 @@
 from omegaconf import DictConfig, ListConfig, OmegaConf
-from dataclasses import dataclass
 from multiprocessing import Queue
-from modules.node.tracker import TrackerPayload
+from modules.node.tracker.tracker_payload import TrackerPayload
 import threading
 
 class Render:
